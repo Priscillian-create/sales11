@@ -411,6 +411,10 @@
             transition: all 0.3s; 
             position: relative; 
             overflow: hidden; 
+            min-height: 44px; /* Ensure buttons are at least 44px tall for touch accessibility */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         } 
         
         .btn-primary { 
@@ -535,9 +539,14 @@
             color: var(--success-color); 
         } 
         
+        .inventory-table-container {
+            overflow-x: auto; /* Make table horizontally scrollable on small screens */
+        }
+        
         .inventory-table { 
             width: 100%; 
             border-collapse: collapse; 
+            min-width: 800px; /* Set minimum width to prevent table from breaking */
         } 
         
         .inventory-table th, .inventory-table td { 
@@ -619,6 +628,7 @@
             border-radius: 4px; 
             cursor: pointer; 
             color: white; 
+            min-height: 32px; /* Ensure buttons are at least 32px tall for touch accessibility */
         } 
         
         .btn-edit { 
@@ -640,6 +650,7 @@
             z-index: 1000; 
             align-items: center; 
             justify-content: center; 
+            padding: 15px; /* Add padding for small screens */
         } 
         
         .modal.active { 
@@ -676,6 +687,8 @@
             font-size: 1.5rem; 
             cursor: pointer; 
             color: var(--gray-color); 
+            min-width: 30px; /* Ensure button is large enough for touch */
+            min-height: 30px;
         } 
         
         .modal-body { 
@@ -698,6 +711,7 @@
             border: 1px solid #ddd; 
             border-radius: 4px; 
             font-size: 1rem; 
+            min-height: 44px; /* Ensure inputs are at least 44px tall for touch accessibility */
         } 
         
         .modal-footer { 
@@ -706,6 +720,7 @@
             display: flex; 
             justify-content: flex-end; 
             gap: 10px; 
+            flex-wrap: wrap; /* Allow buttons to wrap on small screens */
         } 
         
         .receipt { 
@@ -760,6 +775,7 @@
             margin-top: 20px; 
             display: flex; 
             gap: 10px; 
+            flex-wrap: wrap; /* Allow buttons to wrap on small screens */
         } 
         
         .notification { 
@@ -775,6 +791,7 @@
             align-items: center; 
             transform: translateX(150%); 
             transition: transform 0.3s ease-out; 
+            max-width: 90%; /* Ensure notification doesn't overflow on small screens */
         } 
         
         .notification.show { 
@@ -825,13 +842,15 @@
             justify-content: center; 
             min-height: 100vh; 
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); 
+            padding: 15px; /* Add padding for small screens */
         } 
         
         .login-card { 
             background: white; 
             border-radius: 10px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
-            width: 400px; 
+            width: 100%; 
+            max-width: 400px; 
             padding: 40px; 
         } 
         
@@ -888,6 +907,7 @@
             cursor: pointer; 
             transition: background 0.3s; 
             position: relative;
+            min-height: 44px; /* Ensure button is at least 44px tall for touch accessibility */
         } 
         
         .login-btn:hover { 
@@ -1306,6 +1326,7 @@
             font-weight: 600;
             display: none;
             z-index: 1000;
+            max-width: 90%; /* Ensure indicator doesn't overflow on small screens */
         }
         
         .offline-indicator.show {
@@ -1324,6 +1345,7 @@
             font-weight: 600;
             display: none;
             z-index: 1000;
+            max-width: 90%; /* Ensure status doesn't overflow on small screens */
         }
         
         .sync-status.show {
@@ -1360,10 +1382,12 @@
             display: flex;
             gap: 10px;
             margin-bottom: 15px;
+            flex-wrap: wrap; /* Allow inputs to wrap on small screens */
         }
         
         .barcode-input-group input {
             flex: 1;
+            min-width: 200px; /* Ensure input has a minimum width */
         }
         
         .barcode-input-group button {
@@ -1376,6 +1400,7 @@
             gap: 10px;
             margin-bottom: 20px;
             align-items: center;
+            flex-wrap: wrap; /* Allow controls to wrap on small screens */
         }
         
         .daily-report-controls label {
@@ -1443,6 +1468,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
+            min-width: 600px; /* Set minimum width to prevent table from breaking */
         }
         
         .daily-sales-table th, .daily-sales-table td {
@@ -1481,6 +1507,7 @@
         .deleted-sales-table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 600px; /* Set minimum width to prevent table from breaking */
         }
         
         .deleted-sales-table th, .deleted-sales-table td {
@@ -1499,6 +1526,7 @@
             background-color: #f8f9fa;
         }
         
+        /* Responsive improvements */
         @media (max-width: 992px) { 
             .pos-container { 
                 grid-template-columns: 1fr; 
@@ -1550,6 +1578,34 @@
             .analysis-metrics {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            /* Improve modal responsiveness */
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+            
+            /* Improve form responsiveness */
+            .form-group {
+                margin-bottom: 20px;
+            }
+            
+            /* Improve button responsiveness */
+            .btn {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            /* Improve table responsiveness */
+            .inventory-table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* Improve cart responsiveness */
+            .cart-actions {
+                grid-template-columns: 1fr;
+            }
         } 
         
         @media (max-width: 576px) { 
@@ -1561,6 +1617,58 @@
             } 
             .dashboard-summary {
                 grid-template-columns: 1fr;
+            }
+            
+            /* Further improve modal responsiveness */
+            .modal-content {
+                width: 100%;
+                border-radius: 0;
+                max-height: 100vh;
+            }
+            
+            /* Improve header responsiveness */
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .user-info {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            /* Improve button responsiveness */
+            .btn {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            /* Improve form responsiveness */
+            .form-group input, .form-group select {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            /* Improve table responsiveness */
+            .inventory-table th, .inventory-table td {
+                padding: 8px 5px;
+                font-size: 0.8rem;
+            }
+            
+            /* Improve cart responsiveness */
+            .cart-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .cart-item-info {
+                width: 100%;
+            }
+            
+            .cart-item-total {
+                width: 100%;
+                text-align: right;
             }
         }
     </style>
@@ -2178,63 +2286,69 @@
                         </div>
                         
                         <h4 style="margin-top: 20px; margin-bottom: 10px;">Daily Sales Details</h4>
-                        <table class="daily-sales-table">
-                            <thead>
-                                <tr>
-                                    <th>Receipt #</th>
-                                    <th>Time</th>
-                                    <th>Items</th>
-                                    <th>Total</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="daily-sales-table-body">
-                                <tr>
-                                    <td colspan="5" class="no-data">No sales data for selected date</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="inventory-table-container">
+                            <table class="daily-sales-table">
+                                <thead>
+                                    <tr>
+                                        <th>Receipt #</th>
+                                        <th>Time</th>
+                                        <th>Items</th>
+                                        <th>Total</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="daily-sales-table-body">
+                                    <tr>
+                                        <td colspan="5" class="no-data">No sales data for selected date</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     
                     <!-- Recent Sales Section -->
                     <div class="report-section">
                         <h3><i class="fas fa-history"></i> Recent Sales</h3>
-                        <table class="inventory-table">
-                            <thead>
-                                <tr>
-                                    <th>Receipt #</th>
-                                    <th>Date</th>
-                                    <th>Items</th>
-                                    <th>Total</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="sales-table-body">
-                                <tr>
-                                    <td colspan="5" style="text-align: center;">No sales data available</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <!-- Deleted Sales Section -->
-                        <div class="deleted-sales-section">
-                            <h4><i class="fas fa-trash-alt"></i> Deleted Sales</h4>
-                            <table class="deleted-sales-table">
+                        <div class="inventory-table-container">
+                            <table class="inventory-table">
                                 <thead>
                                     <tr>
                                         <th>Receipt #</th>
                                         <th>Date</th>
                                         <th>Items</th>
                                         <th>Total</th>
-                                        <th>Status</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody id="deleted-sales-table-body">
+                                <tbody id="sales-table-body">
                                     <tr>
-                                        <td colspan="5" style="text-align: center;">No deleted sales</td>
+                                        <td colspan="5" style="text-align: center;">No sales data available</td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        
+                        <!-- Deleted Sales Section -->
+                        <div class="deleted-sales-section">
+                            <h4><i class="fas fa-trash-alt"></i> Deleted Sales</h4>
+                            <div class="inventory-table-container">
+                                <table class="deleted-sales-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Receipt #</th>
+                                            <th>Date</th>
+                                            <th>Items</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="deleted-sales-table-body">
+                                        <tr>
+                                            <td colspan="5" style="text-align: center;">No deleted sales</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
